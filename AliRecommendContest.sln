@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController", "FeatureController\FeatureController.csproj", "{F8A4D8A4-6D18-4C82-8863-9EB026968442}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{86D5254F-41A3-40A7-8792-65AC2A91F76A}"
+	ProjectSection(SolutionItems) = preProject
+		Shared\AliRecommend2Data.sql = Shared\AliRecommend2Data.sql
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "常用脚本", "常用脚本", "{79BDF981-4407-42F4-BD68-E892C2075CD2}"
+	ProjectSection(SolutionItems) = preProject
+		常用脚本\1.数据库导入格式化.py = 常用脚本\1.数据库导入格式化.py
+		常用脚本\2sampling.py = 常用脚本\2sampling.py
+		常用脚本\3expandfeature.py = 常用脚本\3expandfeature.py
+		常用脚本\41standard.py = 常用脚本\41standard.py
+		常用脚本\4normalize.py = 常用脚本\4normalize.py
+		常用脚本\5csv2bin.py = 常用脚本\5csv2bin.py
+		常用脚本\6.处理训练样本.bat = 常用脚本\6.处理训练样本.bat
+		常用脚本\合并训练集.py = 常用脚本\合并训练集.py
+		常用脚本\计算文件行数.py = 常用脚本\计算文件行数.py
+	EndProjectSection
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CustomClassifiers", "CustomClassifiers\CustomClassifiers.pyproj", "{AD11238E-3AB8-4560-8E10-E9A8CF181215}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "YML.BPN", "YML.BPN\YML.BPN.vcxproj", "{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BPNetwork", "BPNetwork\BPNetwork.pyproj", "{262C8424-C2E9-4D8A-8F2B-BCDD73011235}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Debug|x64.Build.0 = Debug|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Debug|x86.Build.0 = Debug|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Release|x64.ActiveCfg = Release|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Release|x64.Build.0 = Release|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Release|x86.ActiveCfg = Release|Any CPU
+		{F8A4D8A4-6D18-4C82-8863-9EB026968442}.Release|x86.Build.0 = Release|Any CPU
+		{AD11238E-3AB8-4560-8E10-E9A8CF181215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD11238E-3AB8-4560-8E10-E9A8CF181215}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AD11238E-3AB8-4560-8E10-E9A8CF181215}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD11238E-3AB8-4560-8E10-E9A8CF181215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD11238E-3AB8-4560-8E10-E9A8CF181215}.Release|x64.ActiveCfg = Release|Any CPU
+		{AD11238E-3AB8-4560-8E10-E9A8CF181215}.Release|x86.ActiveCfg = Release|Any CPU
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Debug|Any CPU.Build.0 = Debug|Win32
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Debug|x64.ActiveCfg = Debug|x64
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Debug|x64.Build.0 = Debug|x64
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Debug|x86.ActiveCfg = Debug|Win32
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Debug|x86.Build.0 = Debug|Win32
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Release|Any CPU.ActiveCfg = Release|Win32
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Release|x64.ActiveCfg = Release|x64
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Release|x64.Build.0 = Release|x64
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Release|x86.ActiveCfg = Release|Win32
+		{AC0CF5A1-A2DB-4171-8EA6-01D5173054CC}.Release|x86.Build.0 = Release|Win32
+		{262C8424-C2E9-4D8A-8F2B-BCDD73011235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262C8424-C2E9-4D8A-8F2B-BCDD73011235}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{262C8424-C2E9-4D8A-8F2B-BCDD73011235}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{262C8424-C2E9-4D8A-8F2B-BCDD73011235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262C8424-C2E9-4D8A-8F2B-BCDD73011235}.Release|x64.ActiveCfg = Release|Any CPU
+		{262C8424-C2E9-4D8A-8F2B-BCDD73011235}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
