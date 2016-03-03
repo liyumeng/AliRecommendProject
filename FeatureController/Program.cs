@@ -63,11 +63,9 @@ namespace FeatureController
             Global.HourSpan = 8;
             Global.RelationDays = 3;
             Global.OnlyOnline = false;
-            Global.NegativeSampleRate = 100;
+            Global.NegativeSampleRate = 5;
             Global.Normalized = false;
 
-            var manager = new FeatureManager(new DateTime(2014, 12, 17));
-            manager.Run();
             InitialData();
 
         }

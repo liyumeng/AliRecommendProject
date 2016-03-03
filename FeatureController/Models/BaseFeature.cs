@@ -70,6 +70,28 @@ namespace FeatureController.Models
             //writer.Write("{0}_total_click,{0}_total_store,{0}_total_car,{0}_total_buy,", prefix);
         }
 
+        /// <summary>
+        /// 为去重的两个统计准备的，比如统计一个用户购买的去重的商品个数
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="behaviors"></param>
+        public static void WriteHeaders(StreamWriter writer, string[] behaviors)
+        {
+            List<int> hours = new List<int>();
+            for (int i = Global.HourSpan; i <= Global.RelationDays * 24; i += Global.HourSpan)
+            {
+                hours.Add(i);
+            }
+            foreach (var behavior in behaviors)
+            {
+                foreach (var hour in hours)
+                {
+                    writer.Write(String.Format(behavior, hour));
+                    writer.Write(",");
+                }
+            }
+        }
+
         public void SetFourBehaviorCount(IGrouping<int, T_UserAction> data)
         {
             for (int behaviorType = 1; behaviorType < 5; behaviorType++)

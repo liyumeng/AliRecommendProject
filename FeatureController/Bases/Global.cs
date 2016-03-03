@@ -26,7 +26,7 @@ namespace FeatureController.Bases
         public static bool OnlyOnline = false;
 
         public static bool Normalized = false;
-        public static readonly string MainDirName = @"F:\AliRecommendHomeworkData\434维特征搜索作业数据";
+        public static readonly string MainDirName = @"F:\AliRecommendData\434维特征搜索作业数据";
         public static readonly string DirName = MainDirName + @"\{0}days_{1}hourspan_{2}\";
 
         /// <summary>
