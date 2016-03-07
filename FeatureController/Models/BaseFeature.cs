@@ -30,6 +30,7 @@ namespace FeatureController.Models
         /// 4种操作在各个时间段的数量统计
         /// </summary>
         public BehaviorCountCollection FourBehaviorCountCollection;
+        public BehaviorCountCollection UniqueFourBehaviorCount;
 
         /// <summary>
         /// 4种操作距离现在最近的时间
@@ -45,6 +46,7 @@ namespace FeatureController.Models
             m_relationDays = Global.RelationDays;
             FourBehaviorCountCollection = new BehaviorCountCollection(4);
             FourMinHourCountCollection = new HourCountCollection(4);
+            UniqueFourBehaviorCount = new BehaviorCountCollection(4);
         }
 
         public virtual void Write(StreamWriter writer)

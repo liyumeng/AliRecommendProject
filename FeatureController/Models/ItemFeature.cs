@@ -16,8 +16,8 @@ namespace FeatureController.Models
         //商品的点击，收藏及加入购物车的转化率
         public BehaviorCountCollection TransferRateCollection { get; set; }
 
-        public ItemFeature() {
-            UniqueScanAndBuyCount = new BehaviorCountCollection(2);
+        public ItemFeature()
+        {
             TransferRateCollection = new BehaviorCountCollection(3);
 
         }
@@ -26,8 +26,6 @@ namespace FeatureController.Models
             PredictDate = predictDate;
             Id = itemId;
             TransferRateCollection = new BehaviorCountCollection(3);
-            UniqueScanAndBuyCount = new BehaviorCountCollection(2);
-
         }
 
         public override void Update(IGrouping<int, T_UserAction> items)
@@ -67,7 +65,7 @@ namespace FeatureController.Models
         public override void Write(System.IO.StreamWriter writer)
         {
             base.Write(writer);
-            UniqueScanAndBuyCount.Write(writer);    //独立用户的统计
+            UniqueFourBehaviorCount.Write(writer);    //独立用户的统计
 
             CategoryFeature.Write(writer);
             TransferRateCollection.Write(writer);
@@ -78,7 +76,7 @@ namespace FeatureController.Models
 
             #region 输出表头，浏览该商品的去重用户的数量
 
-            string[] behaviors = new string[] { "item_unique_user_scan_in_{0}_hours", "item_unique_user_buy_in_{0}_hours" };
+            string[] behaviors = new string[] { "item_unique_user_click_in_{0}_hours", "item_unique_user_store_in_{0}_hours", "item_unique_user_car_in_{0}_hours", "item_unique_user_buy_in_{0}_hours" };
             BaseFeature.WriteHeaders(writer, behaviors);
 
             #endregion
@@ -90,8 +88,6 @@ namespace FeatureController.Models
 
         //去重用户后的统计
 
-        public BehaviorCountCollection UniqueScanAndBuyCount { get; set; }
-
 
         /// <summary>
         /// 点击该商品的用户去重后的数量
@@ -100,7 +96,7 @@ namespace FeatureController.Models
         public void SetUniqueScanAndBuyCount(IGrouping<int, T_UserAction> data)
         {
             int spanCount = 24 / m_hourSpan * m_relationDays;
-            int[] behaviorTypes = new int[] { 1, 4 };
+            int[] behaviorTypes = new int[] { 1, 2, 3, 4 };
 
             for (int i = 0; i < behaviorTypes.Length; i++)
             {
@@ -110,7 +106,7 @@ namespace FeatureController.Models
                     int value = data.Where(d => d.behaviortype == behaviorTypes[i] && d.actiondate >= dateTime).GroupBy(d => d.userid).Count();
                     if (value == 0)
                         break;
-                    this.UniqueScanAndBuyCount.SetValue(i, span - 1, value);
+                    this.UniqueFourBehaviorCount.SetValue(i, span - 1, value);
                 }
             }
         }

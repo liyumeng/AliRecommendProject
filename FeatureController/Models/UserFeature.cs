@@ -12,22 +12,23 @@ namespace FeatureController.Models
     /// </summary>
     public class UserFeature : BaseFeature
     {
-        public BehaviorCountCollection UniqueScanAndBuyCount { get; set; }
-        public BehaviorCountCollection UniqueScanAndBuyCategoryCount { get; set; }
+        public BehaviorCountCollection UniqueItemFourBehaviorCount { get; set; }
+        public BehaviorCountCollection UniqueCategoryFourBehaviorCount { get; set; }
         public Dictionary<int, UserCategoryFeature> UserCategorieDict { get; private set; }
 
 
         //用户的点击，收藏及加入购物车的转化率
         public BehaviorCountCollection TransferRateCollection { get; set; }
 
-        public UserFeature() {
-            UniqueScanAndBuyCount = new BehaviorCountCollection(2);
-            UniqueScanAndBuyCategoryCount = new BehaviorCountCollection(2);
+        public UserFeature()
+        {
+            UniqueItemFourBehaviorCount = new BehaviorCountCollection(4);
+            UniqueCategoryFourBehaviorCount = new BehaviorCountCollection(4);
         }
         public UserFeature(int userId, DateTime predictDate)
         {
-            UniqueScanAndBuyCount = new BehaviorCountCollection(2);
-            UniqueScanAndBuyCategoryCount = new BehaviorCountCollection(2);
+            UniqueItemFourBehaviorCount = new BehaviorCountCollection(4);
+            UniqueCategoryFourBehaviorCount = new BehaviorCountCollection(4);
             UserCategorieDict = new Dictionary<int, UserCategoryFeature>();
 
             PredictDate = predictDate;
@@ -52,7 +53,7 @@ namespace FeatureController.Models
         public void SetUniqueScanAndBuyCount(IGrouping<int, T_UserAction> data)
         {
             int spanCount = 24 / m_hourSpan * m_relationDays;
-            int[] behaviorTypes = new int[] { 1, 4 };
+            int[] behaviorTypes = new int[] { 1, 2, 3, 4 };
 
             for (int i = 0; i < behaviorTypes.Length; i++)
             {
@@ -62,7 +63,7 @@ namespace FeatureController.Models
                     int value = data.Where(d => d.behaviortype == behaviorTypes[i] && d.actiondate >= dateTime).GroupBy(d => d.itemid).Count();
                     if (value == 0)
                         break;
-                    this.UniqueScanAndBuyCount.SetValue(i, span - 1, value);
+                    this.UniqueItemFourBehaviorCount.SetValue(i, span - 1, value);
                 }
             }
         }
@@ -70,7 +71,7 @@ namespace FeatureController.Models
         public void SetUniqueScanAndBuyCategoryCount(IGrouping<int, T_UserAction> data)
         {
             int spanCount = 24 / m_hourSpan * m_relationDays;
-            int[] behaviorTypes = new int[] { 1, 4 };
+            int[] behaviorTypes = new int[] { 1, 2, 3, 4 };
 
             for (int i = 0; i < behaviorTypes.Length; i++)
             {
@@ -81,7 +82,7 @@ namespace FeatureController.Models
                     int value = data.Where(d => d.behaviortype == behaviorTypes[i] && d.actiondate >= dateTime).GroupBy(d => d.category).Count();
                     if (value == 0)
                         break;
-                    this.UniqueScanAndBuyCategoryCount.SetValue(i, span - 1, value);
+                    this.UniqueCategoryFourBehaviorCount.SetValue(i, span - 1, value);
                 }
             }
         }
@@ -89,8 +90,8 @@ namespace FeatureController.Models
         public override void Write(System.IO.StreamWriter writer)
         {
             base.Write(writer); //先写入基本的统计信息
-            UniqueScanAndBuyCount.Write(writer);    //用户点击独立商品的统计
-            UniqueScanAndBuyCategoryCount.Write(writer);    //用户点击独立类别的统计
+            UniqueItemFourBehaviorCount.Write(writer);    //用户点击独立商品的统计
+            UniqueCategoryFourBehaviorCount.Write(writer);    //用户点击独立类别的统计
             TransferRateCollection.Write(writer);   //转化率统计
         }
 
@@ -103,14 +104,14 @@ namespace FeatureController.Models
 
             #region 输出表头，用户浏览、购买的去重商品的数量
 
-            string[] behaviors = new string[] { "user_unique_item_scan_in_{0}_hours", "user_unique_item_buy_in_{0}_hours" };
+            string[] behaviors = new string[] { "user_unique_item_click_in_{0}_hours", "user_unique_item_store_in_{0}_hours", "user_unique_item_car_in_{0}_hours", "user_unique_item_buy_in_{0}_hours" };
             BaseFeature.WriteHeaders(writer, behaviors);
 
             #endregion
 
             #region 输出表头，用户浏览、购买的去重商品类别的数量
 
-            behaviors = new string[] { "user_unique_category_scan_in_{0}_hours", "user_unique_category_buy_in_{0}_hours" };
+            behaviors = new string[] { "user_unique_category_click_in_{0}_hours", "user_unique_category_store_in_{0}_hours", "user_unique_category_car_in_{0}_hours", "user_unique_category_buy_in_{0}_hours" };
 
             BaseFeature.WriteHeaders(writer, behaviors);
 
@@ -121,14 +122,14 @@ namespace FeatureController.Models
         {
             base.CatchMaxValue(item);
             var userFeature = (UserFeature)item;
-            UniqueScanAndBuyCount.CatchMaxValue(userFeature.UniqueScanAndBuyCount);
+            UniqueItemFourBehaviorCount.CatchMaxValue(userFeature.UniqueItemFourBehaviorCount);
         }
 
         public override void CatchMinValue(BaseFeature item)
         {
             base.CatchMinValue(item);
             var userFeature = (UserFeature)item;
-            UniqueScanAndBuyCount.CatchMinValue(userFeature.UniqueScanAndBuyCount);
+            UniqueItemFourBehaviorCount.CatchMinValue(userFeature.UniqueItemFourBehaviorCount);
         }
 
 
